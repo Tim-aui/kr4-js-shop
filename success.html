@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Заявка успешно отправлена в учебном интернет-магазине.">
+        <title>Заявка отправлена — Учебный интернет-магазин</title>
+        <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <script>document.documentElement.classList.add('js');</script>
+        <script src="js/menu.js" defer></script>
+        <script src="js/success.js" defer></script>
+    </head>
+    <body id="top">
+        <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
+        <header class="site-header">
+            <div class="site-header__inner">
+                <a class="site-header__logo" href="index.html">ПослеМайнинга</a>
+
+                <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                    <span class="site-nav__toggle-icon" aria-hidden="true"></span>
+                    <span class="site-nav__toggle-text">Меню</span>
+                </button>
+
+                <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+                    <ul class="site-nav__list">
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="index.html">Главная</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="catalog.html">Каталог</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="product.html">Товар</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="order.html">Заявка</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="contacts.html">Контакты</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="index.html#advantages">Преимущества</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="index.html#popular">Популярные товары</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="contacts.html#feedback">Обратная связь</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main id="main" tabindex="-1">
+            <nav class="breadcrumbs" aria-label="Хлебные крошки">
+                <a class="breadcrumbs__link" href="index.html">Главная</a>
+                <a class="breadcrumbs__link" href="order.html">Заявка</a>
+                <span class="breadcrumbs__current" aria-current="page">Заявка отправлена</span>
+            </nav>
+
+            <section class="section">
+                <div class="success">
+                    <span class="success__icon" aria-hidden="true">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 12.5 9 17.5 20 6.5"></path>
+                        </svg>
+                    </span>
+                    <h1 class="success__title">Заявка отправлена!</h1>
+                    <p class="success__text" id="success-text" role="status">
+                        Спасибо! Мы получили вашу заявку и свяжемся с вами в ближайшее время.
+                    </p>
+                    <div class="success__actions">
+                        <a class="button button--primary" href="catalog.html">В каталог</a>
+                        <a class="button button--secondary" href="index.html">На главную</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer" id="contacts">
+            <div class="site-footer__inner">
+                <p>&copy; 2026 Учебный проект. Все права защищены.</p>
+                <p>Дисциплина: Фронтенд и бэкенд разработка</p>
+            </div>
+        </footer>
+
+        <a class="scroll-up" href="#top">Наверх</a>
+
+    </body>
+</html>

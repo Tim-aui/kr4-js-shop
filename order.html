@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Форма оформления заявки учебного интернет-магазина.">
+        <title>Оформление заявки — Учебный интернет-магазин</title>
+        <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <script>document.documentElement.classList.add('js');</script>
+        <script src="js/menu.js" defer></script>
+        <script src="js/order.js" defer></script>
+    </head>
+    <body id="top">
+        <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
+        <header class="site-header">
+            <div class="site-header__inner">
+                <a class="site-header__logo" href="index.html">ПослеМайнинга</a>
+
+                <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                    <span class="site-nav__toggle-icon" aria-hidden="true"></span>
+                    <span class="site-nav__toggle-text">Меню</span>
+                </button>
+
+                <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+                    <ul class="site-nav__list">
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="index.html">Главная</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="catalog.html">Каталог</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="product.html">Товар</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link site-nav__link--active" href="order.html" aria-current="page">Заявка</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="contacts.html">Контакты</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="index.html#advantages">Преимущества</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="index.html#popular">Популярные товары</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="contacts.html#feedback">Обратная связь</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main id="main" tabindex="-1">
+            <nav class="breadcrumbs" aria-label="Хлебные крошки">
+                <a class="breadcrumbs__link" href="index.html">Главная</a>
+                <span class="breadcrumbs__current" aria-current="page">Заявка</span>
+            </nav>
+
+            <section class="section">
+                <h1>Оформление заявки</h1>
+                <p>
+                    Заполните форму, чтобы оформить заявку на товар или получить консультацию.
+                    Все поля, кроме комментария, обязательны.
+                </p>
+
+                <form class="order-form" id="order-form" action="#" method="post" novalidate>
+                    <div class="order-form__grid">
+                        <div class="order-form__field">
+                            <label class="order-form__label" for="order-name">Имя</label>
+                            <input class="order-form__input" id="order-name" name="name" type="text"
+                                   placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
+                        </div>
+
+                        <div class="order-form__field">
+                            <label class="order-form__label" for="order-email">E-mail</label>
+                            <input class="order-form__input" id="order-email" name="email" type="email"
+                                   placeholder="example@mail.ru" autocomplete="email" required>
+                        </div>
+
+                        <div class="order-form__field">
+                            <label class="order-form__label" for="order-phone">Телефон</label>
+                            <input class="order-form__input" id="order-phone" name="phone" type="tel"
+                                   inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00"
+                                   pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
+                                   aria-describedby="order-phone-hint" required>
+                            <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
+                        </div>
+
+                        <div class="order-form__field">
+                            <label class="order-form__label" for="order-topic">Тема заявки</label>
+                            <select class="order-form__select" id="order-topic" name="topic" required>
+                                <option value="">Выберите тему</option>
+                                <option value="product">Заказ товара</option>
+                                <option value="consultation">Консультация</option>
+                                <option value="delivery">Доставка</option>
+                            </select>
+                        </div>
+
+                        <div class="order-form__field order-form__field--wide">
+                            <label class="order-form__label" for="order-product">Товар</label>
+                            <select class="order-form__select" id="order-product" name="product" required>
+                                <option value="">Выберите товар</option>
+                                    <option value="asus-rtx-5080">Видеокарта ASUS GeForce RTX 5080 ROG Astral OC Edition — 164 990 руб.</option>
+                                    <option value="gigabyte-rtx-5070">Видеокарта GIGABYTE GeForce RTX 5070 WINDFORCE OC SFF — 68 990 руб.</option>
+                                    <option value="powercolor-rx-9060-xt">Видеокарта PowerColor AMD Radeon RX 9060 XT Reaper — 44 990 руб.</option>
+                                    <option value="kfa2-rtx-5060">Видеокарта KFA2 GeForce RTX 5060 ROCK(X) OC 2FAN RGB White — 37 990 руб.</option>
+                                    <option value="palit-rtx-5060">Видеокарта Palit GeForce RTX 5060 Dual — 35 990 руб.</option>
+                                    <option value="gigabyte-rtx-5050">Видеокарта GIGABYTE GeForce RTX 5050 WINDFORCE OC — 32 990 руб.</option>
+                                    <option value="msi-rtx-5050">Видеокарта MSI GeForce RTX 5050 VENTUS 2X OC — 31 990 руб.</option>
+                                    <option value="kfa2-rtx-3050">Видеокарта KFA2 GeForce RTX 3050 X Black — 24 990 руб.</option>
+                                    <option value="msi-gt-1030">Видеокарта MSI GeForce GT 1030 AERO ITX OC — 8 990 руб.</option>
+                                    <option value="kfa2-gt-710">Видеокарта KFA2 GeForce GT 710 — 4 990 руб.</option>
+                            </select>
+                        </div>
+
+                        <div class="order-form__field order-form__field--wide">
+                            <label class="order-form__label" for="order-comment">Комментарий</label>
+                            <textarea class="order-form__textarea" id="order-comment" name="comment" rows="4"
+                                      placeholder="Укажите дополнительную информацию"></textarea>
+                        </div>
+
+                        <div class="order-form__field order-form__field--wide">
+                            <label class="order-form__checkbox" for="order-agreement">
+                                <input id="order-agreement" name="agreement" type="checkbox" required>
+                                Я согласен на обработку данных
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="order-form__actions">
+                        <button class="button button--secondary" type="reset">Очистить</button>
+                        <button class="button button--primary" type="submit">Отправить заявку</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer class="site-footer" id="contacts">
+            <div class="site-footer__inner">
+                <p>&copy; 2026 Учебный проект. Все права защищены.</p>
+                <p>Дисциплина: Фронтенд и бэкенд разработка</p>
+            </div>
+        </footer>
+
+        <a class="scroll-up" href="#top">Наверх</a>
+
+    </body>
+</html>
