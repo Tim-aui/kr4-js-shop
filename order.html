@@ -9,8 +9,10 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
         <script>document.documentElement.classList.add('js');</script>
-        <script src="js/menu.js" defer></script>
-        <script src="js/order.js" defer></script>
+        <script src="js/data.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/cart.js" defer></script>
+        <script src="js/validation.js" defer></script>
     </head>
     <body id="top">
         <a class="skip-link" href="#main">Перейти к основному содержимому</a>
@@ -37,6 +39,9 @@
                         </li>
                         <li class="site-nav__item">
                             <a class="site-nav__link site-nav__link--active" href="order.html" aria-current="page">Заявка</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="cart.html">Корзина <span class="cart-counter cart-counter--empty">0</span></a>
                         </li>
                         <li class="site-nav__item">
                             <a class="site-nav__link" href="contacts.html">Контакты</a>
@@ -72,14 +77,16 @@
                     <div class="order-form__grid">
                         <div class="order-form__field">
                             <label class="order-form__label" for="order-name">Имя</label>
-                            <input class="order-form__input" id="order-name" name="name" type="text"
+                            <input class="order-form__input" id="order-name" aria-describedby="order-name-error" name="name" type="text"
                                    placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
+                            <p class="order-form__error" id="order-name-error"></p>
                         </div>
 
                         <div class="order-form__field">
                             <label class="order-form__label" for="order-email">E-mail</label>
-                            <input class="order-form__input" id="order-email" name="email" type="email"
+                            <input class="order-form__input" id="order-email" aria-describedby="order-email-error" name="email" type="email"
                                    placeholder="example@mail.ru" autocomplete="email" required>
+                            <p class="order-form__error" id="order-email-error"></p>
                         </div>
 
                         <div class="order-form__field">
@@ -87,35 +94,38 @@
                             <input class="order-form__input" id="order-phone" name="phone" type="tel"
                                    inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00"
                                    pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
-                                   aria-describedby="order-phone-hint" required>
+                                   aria-describedby="order-phone-hint order-phone-error" required>
                             <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
+                            <p class="order-form__error" id="order-phone-error"></p>
                         </div>
 
                         <div class="order-form__field">
                             <label class="order-form__label" for="order-topic">Тема заявки</label>
-                            <select class="order-form__select" id="order-topic" name="topic" required>
+                            <select class="order-form__select" id="order-topic" aria-describedby="order-topic-error" name="topic" required>
                                 <option value="">Выберите тему</option>
                                 <option value="product">Заказ товара</option>
                                 <option value="consultation">Консультация</option>
                                 <option value="delivery">Доставка</option>
                             </select>
+                            <p class="order-form__error" id="order-topic-error"></p>
                         </div>
 
                         <div class="order-form__field order-form__field--wide">
                             <label class="order-form__label" for="order-product">Товар</label>
-                            <select class="order-form__select" id="order-product" name="product" required>
+                            <select class="order-form__select" id="order-product" aria-describedby="order-product-error" name="product" required>
                                 <option value="">Выберите товар</option>
-                                    <option value="asus-rtx-5080">Видеокарта ASUS GeForce RTX 5080 ROG Astral OC Edition — 164 990 руб.</option>
-                                    <option value="gigabyte-rtx-5070">Видеокарта GIGABYTE GeForce RTX 5070 WINDFORCE OC SFF — 68 990 руб.</option>
-                                    <option value="powercolor-rx-9060-xt">Видеокарта PowerColor AMD Radeon RX 9060 XT Reaper — 44 990 руб.</option>
-                                    <option value="kfa2-rtx-5060">Видеокарта KFA2 GeForce RTX 5060 ROCK(X) OC 2FAN RGB White — 37 990 руб.</option>
-                                    <option value="palit-rtx-5060">Видеокарта Palit GeForce RTX 5060 Dual — 35 990 руб.</option>
-                                    <option value="gigabyte-rtx-5050">Видеокарта GIGABYTE GeForce RTX 5050 WINDFORCE OC — 32 990 руб.</option>
-                                    <option value="msi-rtx-5050">Видеокарта MSI GeForce RTX 5050 VENTUS 2X OC — 31 990 руб.</option>
-                                    <option value="kfa2-rtx-3050">Видеокарта KFA2 GeForce RTX 3050 X Black — 24 990 руб.</option>
-                                    <option value="msi-gt-1030">Видеокарта MSI GeForce GT 1030 AERO ITX OC — 8 990 руб.</option>
-                                    <option value="kfa2-gt-710">Видеокарта KFA2 GeForce GT 710 — 4 990 руб.</option>
+                                    <option value="1">Видеокарта ASUS GeForce RTX 5080 ROG Astral OC Edition — 164 990 руб.</option>
+                                    <option value="2">Видеокарта GIGABYTE GeForce RTX 5070 WINDFORCE OC SFF — 68 990 руб.</option>
+                                    <option value="3">Видеокарта PowerColor AMD Radeon RX 9060 XT Reaper — 44 990 руб.</option>
+                                    <option value="4">Видеокарта KFA2 GeForce RTX 5060 ROCK(X) OC 2FAN RGB White — 37 990 руб.</option>
+                                    <option value="5">Видеокарта Palit GeForce RTX 5060 Dual — 35 990 руб.</option>
+                                    <option value="6">Видеокарта GIGABYTE GeForce RTX 5050 WINDFORCE OC — 32 990 руб.</option>
+                                    <option value="7">Видеокарта MSI GeForce RTX 5050 VENTUS 2X OC — 31 990 руб.</option>
+                                    <option value="8">Видеокарта KFA2 GeForce RTX 3050 X Black — 24 990 руб.</option>
+                                    <option value="9">Видеокарта MSI GeForce GT 1030 AERO ITX OC — 8 990 руб.</option>
+                                    <option value="10">Видеокарта KFA2 GeForce GT 710 — 4 990 руб.</option>
                             </select>
+                            <p class="order-form__error" id="order-product-error"></p>
                         </div>
 
                         <div class="order-form__field order-form__field--wide">
@@ -126,11 +136,14 @@
 
                         <div class="order-form__field order-form__field--wide">
                             <label class="order-form__checkbox" for="order-agreement">
-                                <input id="order-agreement" name="agreement" type="checkbox" required>
+                                <input id="order-agreement" aria-describedby="order-agreement-error" name="agreement" type="checkbox" required>
                                 Я согласен на обработку данных
                             </label>
+                            <p class="order-form__error" id="order-agreement-error"></p>
                         </div>
                     </div>
+
+                    <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
 
                     <div class="order-form__actions">
                         <button class="button button--secondary" type="reset">Очистить</button>

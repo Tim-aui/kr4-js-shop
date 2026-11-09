@@ -9,8 +9,11 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
         <script>document.documentElement.classList.add('js');</script>
-        <script src="js/menu.js" defer></script>
+        <script src="js/data.js" defer></script>
         <script src="js/main.js" defer></script>
+        <script src="js/cart.js" defer></script>
+        <script src="js/modal.js" defer></script>
+        <script src="js/validation.js" defer></script>
     </head>
     <body id="top">
         <a class="skip-link" href="#main">Перейти к основному содержимому</a>
@@ -37,6 +40,9 @@
                         </li>
                         <li class="site-nav__item">
                             <a class="site-nav__link" href="order.html">Заявка</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="cart.html">Корзина <span class="cart-counter cart-counter--empty">0</span></a>
                         </li>
                         <li class="site-nav__item">
                             <a class="site-nav__link" href="contacts.html">Контакты</a>
@@ -185,8 +191,8 @@
             <aside class="aside-info" aria-labelledby="aside-title">
                 <h2 id="aside-title">Информация для студентов</h2>
                 <p>
-                    Контрольная работа №3: сайт из КР №1 адаптирован под разные размеры экранов
-                    (Mobile First, медиазапросы, responsive images) и проверен на доступность.
+                    Контрольная работа №4: в адаптивный сайт из КР №3 добавлена интерактивность на JavaScript —
+                    генерация каталога, поиск, фильтрация, сортировка, корзина и валидация форм.
                 </p>
             </aside>
 
@@ -210,14 +216,16 @@
 
                 <div class="order-form__field">
                     <label class="order-form__label" for="order-name">Имя</label>
-                    <input class="order-form__input" id="order-name" name="name" type="text"
+                    <input class="order-form__input" id="order-name" aria-describedby="order-name-error" name="name" type="text"
                            placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
+                    <p class="order-form__error" id="order-name-error"></p>
                 </div>
 
                 <div class="order-form__field">
                     <label class="order-form__label" for="order-email">E-mail</label>
-                    <input class="order-form__input" id="order-email" name="email" type="email"
+                    <input class="order-form__input" id="order-email" aria-describedby="order-email-error" name="email" type="email"
                            placeholder="example@mail.ru" autocomplete="email" required>
+                    <p class="order-form__error" id="order-email-error"></p>
                 </div>
 
                 <div class="order-form__field">
@@ -225,8 +233,9 @@
                     <input class="order-form__input" id="order-phone" name="phone" type="tel"
                            inputmode="tel" autocomplete="tel" placeholder="+7 (900) 000-00-00"
                            pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
-                           aria-describedby="order-phone-hint" required>
+                           aria-describedby="order-phone-hint order-phone-error" required>
                     <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
+                    <p class="order-form__error" id="order-phone-error"></p>
                 </div>
 
                 <div class="order-form__field">
@@ -236,12 +245,13 @@
 
                 <div class="order-form__field">
                     <label class="order-form__label" for="order-topic">Тема заявки</label>
-                    <select class="order-form__select" id="order-topic" name="topic" required>
+                    <select class="order-form__select" id="order-topic" aria-describedby="order-topic-error" name="topic" required>
                         <option value="">Выберите тему</option>
                         <option value="product">Заказ товара</option>
                         <option value="consultation">Консультация</option>
                         <option value="delivery">Доставка</option>
                     </select>
+                    <p class="order-form__error" id="order-topic-error"></p>
                 </div>
 
                 <div class="order-form__field">
@@ -252,10 +262,13 @@
 
                 <div class="order-form__field">
                     <label class="order-form__checkbox" for="order-agreement">
-                        <input id="order-agreement" name="agreement" type="checkbox" required>
+                        <input id="order-agreement" aria-describedby="order-agreement-error" name="agreement" type="checkbox" required>
                         Я согласен на обработку данных
                     </label>
+                    <p class="order-form__error" id="order-agreement-error"></p>
                 </div>
+
+                <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
 
                 <div class="order-form__actions">
                     <button class="button button--secondary" type="button" id="close-order-dialog">Закрыть</button>
