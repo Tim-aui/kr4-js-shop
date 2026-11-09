@@ -1,89 +1,65 @@
-// Получаем модальное окно по id.
-const orderDialog = document.getElementById('order-dialog');
+function formatPrice(price) {
+  return price.toLocaleString('ru-RU') + ' руб.';
+}
 
-// Получаем все кнопки заказа в карточках товаров.
-const orderButtons = document.querySelectorAll('.product-card__button');
+const navToggle = document.querySelector('.site-nav__toggle');
+const siteNav = document.querySelector('.site-nav');
 
-// Получаем кнопку закрытия модального окна.
-const closeDialogButton = document.getElementById('close-order-dialog');
+const tabletQuery = window.matchMedia('(min-width: 768px)');
 
-// Получаем скрытое поле, в которое будет записан выбранный товар.
-const selectedProductInput = document.getElementById('selected-product');
+function setMenuOpen(isOpen) {
+  siteNav.classList.toggle('site-nav--open', isOpen);
+  navToggle.setAttribute('aria-expanded', String(isOpen));
+  navToggle.querySelector('.site-nav__toggle-text').textContent = isOpen ? 'Закрыть' : 'Меню';
+}
 
-const dialogProductName = document.getElementById('order-dialog-product');
+if (navToggle && siteNav) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+    setMenuOpen(!isOpen);
 
-let lastTrigger = null;
-
-// Перебираем все кнопки «Заказать».
-orderButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    // Получаем название товара из data-атрибута.
-    const productName = button.dataset.product;
-
-    // Записываем название товара в скрытое поле формы.
-    selectedProductInput.value = productName;
-    dialogProductName.textContent = productName;
-
-    lastTrigger = button;
-
-    // Открываем модальное окно.
-    orderDialog.showModal();
-  });
-});
-
-// Закрываем модальное окно по кнопке «Закрыть».
-closeDialogButton.addEventListener('click', () => {
-  orderDialog.close();
-});
-
-orderDialog.addEventListener('click', (event) => {
-  if (event.target === orderDialog) {
-    orderDialog.close();
-  }
-});
-
-orderDialog.addEventListener('close', () => {
-  if (lastTrigger) {
-    lastTrigger.focus();
-  }
-});
-
-// Получаем форму заявки.
-const orderForm = document.getElementById('order-form');
-
-// Обрабатываем отправку формы.
-orderForm.addEventListener('submit', (event) => {
-  // Отменяем стандартную отправку формы,
-  // потому что backend пока не подключён.
-  event.preventDefault();
-
-  // Сбрасываем предыдущие признаки ошибок.
-  const formElements = Array.from(orderForm.elements);
-
-  formElements.forEach((element) => {
-    if (element.willValidate) {
-      element.removeAttribute('aria-invalid');
+    if (!isOpen) {
+      siteNav.querySelector('.site-nav__link').focus();
     }
   });
 
-  // Проверяем встроенные HTML-ограничения формы.
-  if (!orderForm.checkValidity()) {
-    formElements.forEach((element) => {
-      if (element.willValidate && !element.checkValidity()) {
-        element.setAttribute('aria-invalid', 'true');
-      }
-    });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && siteNav.classList.contains('site-nav--open')) {
+      setMenuOpen(false);
+      navToggle.focus();
+    }
+  });
 
-    // Показываем стандартные сообщения браузера.
-    orderForm.reportValidity();
-    return;
-  }
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.site-header') && siteNav.classList.contains('site-nav--open')) {
+      setMenuOpen(false);
+    }
+  });
 
-  // Передаём имя на страницу успешной отправки.
-  const name = document.getElementById('order-name').value;
+  siteNav.addEventListener('click', (event) => {
+    if (event.target.closest('.site-nav__link')) {
+      setMenuOpen(false);
+    }
+  });
 
-  // Закрываем модальное окно и переходим на страницу успешной отправки.
-  lastTrigger = null;
-  orderDialog.close();
-  window.location.href = 'success.html?name=' + encodeURIComponent(name);
-});
+  tabletQuery.addEventListener('change', () => setMenuOpen(false));
+}
+
+const filters = document.querySelector('.catalog-filters');
+
+const desktopQuery = window.matchMedia('(min-width: 1024px)');
+
+if (filters) {
+  const syncFilters = () => {
+    filters.open = desktopQuery.matches;
+  };
+
+  syncFilters();
+  desktopQuery.addEventListener('change', syncFilters);
+
+  filters.querySelector('summary').addEventListener('click', (event) => {
+    if (desktopQuery.matches) {
+      event.preventDefault();
+    }
+  });
+}
