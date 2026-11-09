@@ -9,7 +9,10 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
         <script>document.documentElement.classList.add('js');</script>
-        <script src="js/menu.js" defer></script>
+        <script src="js/data.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/cart.js" defer></script>
+        <script src="js/catalog.js" defer></script>
     </head>
     <body id="top">
         <a class="skip-link" href="#main">Перейти к основному содержимому</a>
@@ -38,6 +41,9 @@
                             <a class="site-nav__link" href="order.html">Заявка</a>
                         </li>
                         <li class="site-nav__item">
+                            <a class="site-nav__link" href="cart.html">Корзина <span class="cart-counter cart-counter--empty">0</span></a>
+                        </li>
+                        <li class="site-nav__item">
                             <a class="site-nav__link" href="contacts.html">Контакты</a>
                         </li>
                         <li class="site-nav__item">
@@ -64,43 +70,43 @@
                 <h1>Каталог товаров</h1>
                 <p>
                     В каталоге представлены видеокарты учебного интернет-магазина.
-                    На телефоне фильтр свёрнут над списком, на desktop — закреплён слева.
+                    Используйте поиск, фильтр по категории и сортировку, чтобы найти нужную модель.
                 </p>
             </section>
 
             <div class="catalog-layout">
                 <details class="catalog-filters" open>
                     <summary class="catalog-filters__summary">
-                        <h2 class="catalog-filters__title">Фильтры</h2>
+                        <h2 class="catalog-filters__title">Поиск и фильтры</h2>
                     </summary>
 
                     <div class="catalog-filters__body">
-                        <form class="filters-form" action="#" method="get">
-                            <fieldset>
-                                <legend>Категория</legend>
-                                <label>
-                                    <input type="checkbox" name="category" value="all">
-                                    Все товары
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="category" value="popular">
-                                    Популярные
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="category" value="new">
-                                    Новинки
-                                </label>
-                            </fieldset>
+                        <form class="filters-form" id="catalog-filters-form" action="#" role="search">
+                            <div class="filters-form__field">
+                                <label class="filters-form__label" for="search-input">Поиск по названию</label>
+                                <input class="filters-form__control" id="search-input" name="search" type="search"
+                                       placeholder="Поиск товаров..." autocomplete="off">
+                            </div>
 
-                            <fieldset>
-                                <legend>Цена, руб.</legend>
-                                <label for="price-from">От</label>
-                                <input id="price-from" name="price-from" type="number" min="0" inputmode="numeric" placeholder="0">
-                                <label for="price-to">До</label>
-                                <input id="price-to" name="price-to" type="number" min="0" inputmode="numeric" placeholder="200000">
-                            </fieldset>
+                            <div class="filters-form__field">
+                                <label class="filters-form__label" for="category-select">Категория</label>
+                                <select class="filters-form__control" id="category-select" name="category">
+                                    <option value="all">Все категории</option>
+                                    <option value="top">Топовые</option>
+                                    <option value="middle">Средний сегмент</option>
+                                    <option value="budget">Бюджетные</option>
+                                </select>
+                            </div>
 
-                            <button class="button button--primary" type="submit">Применить</button>
+                            <div class="filters-form__field">
+                                <label class="filters-form__label" for="sort-select">Сортировка</label>
+                                <select class="filters-form__control" id="sort-select" name="sort">
+                                    <option value="default">По умолчанию</option>
+                                    <option value="price-asc">По цене: по возрастанию</option>
+                                    <option value="price-desc">По цене: по убыванию</option>
+                                    <option value="title-asc">По названию: А–Я</option>
+                                </select>
+                            </div>
                         </form>
                     </div>
                 </details>
@@ -113,193 +119,14 @@
                 <section class="catalog-products" aria-labelledby="catalog-list-title">
                     <h2 id="catalog-list-title">Список товаров</h2>
 
-                    <div class="products-grid">
-                        <article class="product-card product-card--featured">
-                            <img
-                                class="product-card__image"
-                                src="images/products/asus-rtx-5080-500.webp"
-                                srcset="images/products/asus-rtx-5080-320.webp 320w,
-                                    images/products/asus-rtx-5080-500.webp 500w"
-                                sizes="(min-width: 1024px) 340px, (min-width: 600px) calc(50vw - 70px), calc(100vw - 66px)"
-                                alt="Видеокарта ASUS GeForce RTX 5080 ROG Astral OC Edition"
-                                width="640"
-                                height="480"
-                            >
-                            <span class="product-card__badge">Хит</span>
-                            <h3 class="product-card__title">Видеокарта ASUS GeForce RTX 5080 ROG Astral OC Edition</h3>
-                            <p class="product-card__description">Флагманская видеокарта для игр в 4K.</p>
-                            <p class="product-card__price">Цена: 164 990 руб.</p>
-                            <a class="button button--primary product-card__button" href="product.html?id=asus-rtx-5080">Подробнее<span class="visually-hidden"> о товаре Видеокарта ASUS GeForce RTX 5080 ROG Astral OC Edition</span></a>
-                        </article>
+                    <p class="catalog-count" id="catalog-count" aria-live="polite"></p>
 
-                        <article class="product-card">
-                            <img
-                                class="product-card__image"
-                                src="images/products/gigabyte-rtx-5070-1000.webp"
-                                srcset="images/products/gigabyte-rtx-5070-320.webp 320w,
-                                    images/products/gigabyte-rtx-5070-640.webp 640w,
-                                    images/products/gigabyte-rtx-5070-1000.webp 1000w"
-                                sizes="(min-width: 1024px) 340px, (min-width: 600px) calc(50vw - 70px), calc(100vw - 66px)"
-                                alt="Видеокарта GIGABYTE GeForce RTX 5070 WINDFORCE OC SFF"
-                                width="640"
-                                height="480"
-                            >
-                            <span class="product-card__badge product-card__badge--new">Новинка</span>
-                            <h3 class="product-card__title">Видеокарта GIGABYTE GeForce RTX 5070 WINDFORCE OC SFF</h3>
-                            <p class="product-card__description">Видеокарта для уверенного гейминга в 1440p.</p>
-                            <p class="product-card__price">Цена: 68 990 руб.</p>
-                            <a class="button button--primary product-card__button" href="product.html?id=gigabyte-rtx-5070">Подробнее<span class="visually-hidden"> о товаре Видеокарта GIGABYTE GeForce RTX 5070 WINDFORCE OC SFF</span></a>
-                        </article>
+                    <div class="products-grid" id="catalog-grid"></div>
 
-                        <article class="product-card">
-                            <img
-                                class="product-card__image"
-                                src="images/products/powercolor-rx-9060-xt-1000.webp"
-                                srcset="images/products/powercolor-rx-9060-xt-320.webp 320w,
-                                    images/products/powercolor-rx-9060-xt-640.webp 640w,
-                                    images/products/powercolor-rx-9060-xt-1000.webp 1000w"
-                                sizes="(min-width: 1024px) 340px, (min-width: 600px) calc(50vw - 70px), calc(100vw - 66px)"
-                                alt="Видеокарта PowerColor AMD Radeon RX 9060 XT Reaper"
-                                width="640"
-                                height="480"
-                                loading="lazy"
-                            >
-                            <h3 class="product-card__title">Видеокарта PowerColor AMD Radeon RX 9060 XT Reaper</h3>
-                            <p class="product-card__description">Видеокарта на архитектуре RDNA для игр и работы.</p>
-                            <p class="product-card__price">Цена: 44 990 руб.</p>
-                            <a class="button button--primary product-card__button" href="product.html?id=powercolor-rx-9060-xt">Подробнее<span class="visually-hidden"> о товаре Видеокарта PowerColor AMD Radeon RX 9060 XT Reaper</span></a>
-                        </article>
-
-                        <article class="product-card">
-                            <img
-                                class="product-card__image"
-                                src="images/products/kfa2-rtx-5060-500.webp"
-                                srcset="images/products/kfa2-rtx-5060-320.webp 320w,
-                                    images/products/kfa2-rtx-5060-500.webp 500w"
-                                sizes="(min-width: 1024px) 340px, (min-width: 600px) calc(50vw - 70px), calc(100vw - 66px)"
-                                alt="Видеокарта KFA2 GeForce RTX 5060 ROCK(X) OC 2FAN RGB White"
-                                width="640"
-                                height="480"
-                                loading="lazy"
-                            >
-                            <span class="product-card__badge product-card__badge--new">Новинка</span>
-                            <h3 class="product-card__title">Видеокарта KFA2 GeForce RTX 5060 ROCK(X) OC 2FAN RGB White</h3>
-                            <p class="product-card__description">Видеокарта с подсветкой RGB и тихим охлаждением.</p>
-                            <p class="product-card__price">Цена: 37 990 руб.</p>
-                            <a class="button button--primary product-card__button" href="product.html?id=kfa2-rtx-5060">Подробнее<span class="visually-hidden"> о товаре Видеокарта KFA2 GeForce RTX 5060 ROCK(X) OC 2FAN RGB White</span></a>
-                        </article>
-
-                        <article class="product-card">
-                            <img
-                                class="product-card__image"
-                                src="images/products/palit-rtx-5060-1000.webp"
-                                srcset="images/products/palit-rtx-5060-320.webp 320w,
-                                    images/products/palit-rtx-5060-640.webp 640w,
-                                    images/products/palit-rtx-5060-1000.webp 1000w"
-                                sizes="(min-width: 1024px) 340px, (min-width: 600px) calc(50vw - 70px), calc(100vw - 66px)"
-                                alt="Видеокарта Palit GeForce RTX 5060 Dual"
-                                width="640"
-                                height="480"
-                                loading="lazy"
-                            >
-                            <h3 class="product-card__title">Видеокарта Palit GeForce RTX 5060 Dual</h3>
-                            <p class="product-card__description">Видеокарта для игр в Full HD.</p>
-                            <p class="product-card__price">Цена: 35 990 руб.</p>
-                            <a class="button button--primary product-card__button" href="product.html?id=palit-rtx-5060">Подробнее<span class="visually-hidden"> о товаре Видеокарта Palit GeForce RTX 5060 Dual</span></a>
-                        </article>
-
-                        <article class="product-card">
-                            <img
-                                class="product-card__image"
-                                src="images/products/gigabyte-rtx-5050-500.webp"
-                                srcset="images/products/gigabyte-rtx-5050-320.webp 320w,
-                                    images/products/gigabyte-rtx-5050-500.webp 500w"
-                                sizes="(min-width: 1024px) 340px, (min-width: 600px) calc(50vw - 70px), calc(100vw - 66px)"
-                                alt="Видеокарта GIGABYTE GeForce RTX 5050 WINDFORCE OC"
-                                width="640"
-                                height="480"
-                                loading="lazy"
-                            >
-                            <h3 class="product-card__title">Видеокарта GIGABYTE GeForce RTX 5050 WINDFORCE OC</h3>
-                            <p class="product-card__description">Компактная видеокарта для игр в Full HD.</p>
-                            <p class="product-card__price">Цена: 32 990 руб.</p>
-                            <a class="button button--primary product-card__button" href="product.html?id=gigabyte-rtx-5050">Подробнее<span class="visually-hidden"> о товаре Видеокарта GIGABYTE GeForce RTX 5050 WINDFORCE OC</span></a>
-                        </article>
-
-                        <article class="product-card">
-                            <img
-                                class="product-card__image"
-                                src="images/products/msi-rtx-5050-500.webp"
-                                srcset="images/products/msi-rtx-5050-320.webp 320w,
-                                    images/products/msi-rtx-5050-500.webp 500w"
-                                sizes="(min-width: 1024px) 340px, (min-width: 600px) calc(50vw - 70px), calc(100vw - 66px)"
-                                alt="Видеокарта MSI GeForce RTX 5050 VENTUS 2X OC"
-                                width="640"
-                                height="480"
-                                loading="lazy"
-                            >
-                            <h3 class="product-card__title">Видеокарта MSI GeForce RTX 5050 VENTUS 2X OC</h3>
-                            <p class="product-card__description">Видеокарта для игр и работы с графикой.</p>
-                            <p class="product-card__price">Цена: 31 990 руб.</p>
-                            <a class="button button--primary product-card__button" href="product.html?id=msi-rtx-5050">Подробнее<span class="visually-hidden"> о товаре Видеокарта MSI GeForce RTX 5050 VENTUS 2X OC</span></a>
-                        </article>
-
-                        <article class="product-card product-card--discount">
-                            <img
-                                class="product-card__image"
-                                src="images/products/kfa2-rtx-3050-1000.webp"
-                                srcset="images/products/kfa2-rtx-3050-320.webp 320w,
-                                    images/products/kfa2-rtx-3050-640.webp 640w,
-                                    images/products/kfa2-rtx-3050-1000.webp 1000w"
-                                sizes="(min-width: 1024px) 340px, (min-width: 600px) calc(50vw - 70px), calc(100vw - 66px)"
-                                alt="Видеокарта KFA2 GeForce RTX 3050 X Black"
-                                width="640"
-                                height="480"
-                                loading="lazy"
-                            >
-                            <span class="product-card__badge product-card__badge--discount">Скидка</span>
-                            <h3 class="product-card__title">Видеокарта KFA2 GeForce RTX 3050 X Black</h3>
-                            <p class="product-card__description">Видеокарта для игр в Full HD и монтажа.</p>
-                            <p class="product-card__price">Цена: 24 990 руб.</p>
-                            <a class="button button--primary product-card__button" href="product.html?id=kfa2-rtx-3050">Подробнее<span class="visually-hidden"> о товаре Видеокарта KFA2 GeForce RTX 3050 X Black</span></a>
-                        </article>
-
-                        <article class="product-card product-card--discount">
-                            <img
-                                class="product-card__image"
-                                src="images/products/msi-gt-1030-500.webp"
-                                srcset="images/products/msi-gt-1030-320.webp 320w,
-                                    images/products/msi-gt-1030-500.webp 500w"
-                                sizes="(min-width: 1024px) 340px, (min-width: 600px) calc(50vw - 70px), calc(100vw - 66px)"
-                                alt="Видеокарта MSI GeForce GT 1030 AERO ITX OC"
-                                width="640"
-                                height="480"
-                                loading="lazy"
-                            >
-                            <span class="product-card__badge product-card__badge--discount">Скидка</span>
-                            <h3 class="product-card__title">Видеокарта MSI GeForce GT 1030 AERO ITX OC</h3>
-                            <p class="product-card__description">Видеокарта для офисных задач и медиацентра.</p>
-                            <p class="product-card__price">Цена: 8 990 руб.</p>
-                            <a class="button button--primary product-card__button" href="product.html?id=msi-gt-1030">Подробнее<span class="visually-hidden"> о товаре Видеокарта MSI GeForce GT 1030 AERO ITX OC</span></a>
-                        </article>
-
-                        <article class="product-card">
-                            <img
-                                class="product-card__image"
-                                src="images/products/kfa2-gt-710-500.webp"
-                                srcset="images/products/kfa2-gt-710-320.webp 320w,
-                                    images/products/kfa2-gt-710-500.webp 500w"
-                                sizes="(min-width: 1024px) 340px, (min-width: 600px) calc(50vw - 70px), calc(100vw - 66px)"
-                                alt="Видеокарта KFA2 GeForce GT 710"
-                                width="640"
-                                height="480"
-                                loading="lazy"
-                            >
-                            <h3 class="product-card__title">Видеокарта KFA2 GeForce GT 710</h3>
-                            <p class="product-card__description">Видеокарта для сборки офисного ПК.</p>
-                            <p class="product-card__price">Цена: 4 990 руб.</p>
-                            <a class="button button--primary product-card__button" href="product.html?id=kfa2-gt-710">Подробнее<span class="visually-hidden"> о товаре Видеокарта KFA2 GeForce GT 710</span></a>
-                        </article>
+                    <div class="catalog-empty" id="catalog-empty" hidden>
+                        <p class="catalog-empty__title">По вашему запросу ничего не найдено.</p>
+                        <p class="catalog-empty__text">Попробуйте изменить запрос, выбрать другую категорию или сбросить фильтры.</p>
+                        <button class="button button--primary" id="catalog-reset" type="button">Сбросить фильтры</button>
                     </div>
                 </section>
             </div>
