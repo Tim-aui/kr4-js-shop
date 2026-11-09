@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Корзина учебного интернет-магазина видеокарт.">
+        <title>Корзина — Учебный интернет-магазин</title>
+        <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <script>document.documentElement.classList.add('js');</script>
+        <script src="js/data.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/cart.js" defer></script>
+    </head>
+    <body id="top">
+        <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+
+        <header class="site-header">
+            <div class="site-header__inner">
+                <a class="site-header__logo" href="index.html">ПослеМайнинга</a>
+
+                <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                    <span class="site-nav__toggle-icon" aria-hidden="true"></span>
+                    <span class="site-nav__toggle-text">Меню</span>
+                </button>
+
+                <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+                    <ul class="site-nav__list">
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="index.html">Главная</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="catalog.html">Каталог</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="product.html">Товар</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="order.html">Заявка</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link site-nav__link--active" href="cart.html" aria-current="page">Корзина <span class="cart-counter cart-counter--empty">0</span></a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="contacts.html">Контакты</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="index.html#advantages">Преимущества</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="index.html#popular">Популярные товары</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="contacts.html#feedback">Обратная связь</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main id="main" tabindex="-1">
+            <nav class="breadcrumbs" aria-label="Хлебные крошки">
+                <a class="breadcrumbs__link" href="index.html">Главная</a>
+                <span class="breadcrumbs__current" aria-current="page">Корзина</span>
+            </nav>
+
+            <section class="section">
+                <h1>Корзина</h1>
+
+                <div class="cart-empty" id="cart-empty" hidden>
+                    <p class="cart-empty__title">Корзина пуста.</p>
+                    <p>Добавьте товары из каталога, чтобы оформить заявку.</p>
+                    <a class="button button--primary" href="catalog.html">Перейти в каталог</a>
+                </div>
+
+                <div class="cart-layout">
+                    <ul class="cart-list" id="cart-list"></ul>
+
+                    <div class="cart-summary" id="cart-summary" hidden>
+                        <h2 class="cart-summary__title">Итог заказа</h2>
+
+                        <form class="promo-form" id="promo-form" action="#" novalidate>
+                            <label class="order-form__label" for="promo-input">Промокод</label>
+                            <div class="promo-form__row">
+                                <input class="order-form__input" id="promo-input" name="promo" type="text"
+                                       autocomplete="off" aria-describedby="promo-hint promo-message">
+                                <button class="button button--secondary" type="submit">Применить</button>
+                            </div>
+                            <small class="order-form__hint" id="promo-hint">Учебные промокоды: STUDENT10, MINING20</small>
+                            <p class="form-message" id="promo-message" role="status" aria-live="polite"></p>
+                        </form>
+
+                        <dl class="cart-summary__list">
+                            <div class="cart-summary__row">
+                                <dt>Товаров</dt>
+                                <dd id="cart-count">0</dd>
+                            </div>
+                            <div class="cart-summary__row">
+                                <dt>Сумма</dt>
+                                <dd id="cart-subtotal">0 руб.</dd>
+                            </div>
+                            <div class="cart-summary__row">
+                                <dt>Скидка</dt>
+                                <dd id="cart-discount">0 руб.</dd>
+                            </div>
+                            <div class="cart-summary__row cart-summary__row--total">
+                                <dt>Итого</dt>
+                                <dd id="cart-total">0 руб.</dd>
+                            </div>
+                        </dl>
+
+                        <div class="cart-summary__actions">
+                            <a class="button button--primary" href="order.html">Оформить заявку</a>
+                            <button class="button button--secondary" id="cart-clear" type="button">Очистить корзину</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer" id="contacts">
+            <div class="site-footer__inner">
+                <p>&copy; 2026 Учебный проект. Все права защищены.</p>
+                <p>Дисциплина: Фронтенд и бэкенд разработка</p>
+            </div>
+        </footer>
+
+        <a class="scroll-up" href="#top">Наверх</a>
+
+    </body>
+</html>

@@ -9,7 +9,9 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
         <script>document.documentElement.classList.add('js');</script>
-        <script src="js/menu.js" defer></script>
+        <script src="js/data.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/cart.js" defer></script>
         <script src="js/product.js" defer></script>
     </head>
     <body id="top">
@@ -37,6 +39,9 @@
                         </li>
                         <li class="site-nav__item">
                             <a class="site-nav__link" href="order.html">Заявка</a>
+                        </li>
+                        <li class="site-nav__item">
+                            <a class="site-nav__link" href="cart.html">Корзина <span class="cart-counter cart-counter--empty">0</span></a>
                         </li>
                         <li class="site-nav__item">
                             <a class="site-nav__link" href="contacts.html">Контакты</a>
@@ -118,7 +123,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Наличие</th>
-                                        <td>В наличии</td>
+                                        <td id="spec-stock">В наличии</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Графический чип</th>
@@ -136,7 +141,11 @@
                             </table>
                         </div>
 
-                        <a class="button button--primary" id="product-order-link" href="order.html?product=asus-rtx-5080">Оформить заявку</a>
+                        <div class="product-details__actions">
+                            <button class="button button--primary" id="product-cart-button" type="button">В корзину</button>
+                            <a class="button button--secondary" id="product-order-link" href="order.html?product=1">Оформить заявку</a>
+                        </div>
+                        <p class="form-message" id="product-cart-message" role="status" aria-live="polite"></p>
                     </div>
                 </div>
             </section>
@@ -156,36 +165,36 @@
                             </tr>
                         </thead>
                         <tbody role="rowgroup">
-                                <tr class="product-table__row product-table__row--current" role="row" data-compare-id="asus-rtx-5080">
-                                    <th scope="row" role="rowheader"><a href="product.html?id=asus-rtx-5080">ASUS RTX 5080 ROG Astral</a></th>
+                                <tr class="product-table__row product-table__row--current" role="row" data-compare-id="1">
+                                    <th scope="row" role="rowheader"><a href="product.html?id=1">ASUS RTX 5080 ROG Astral</a></th>
                                     <td role="cell" data-label="Чип">GeForce RTX 5080</td>
                                     <td role="cell" data-label="Память">16 ГБ GDDR7</td>
                                     <td role="cell" data-label="Интерфейс">PCIe 5.0</td>
                                     <td role="cell" data-label="Цена">164 990 руб.</td>
                                 </tr>
-                                <tr class="product-table__row" role="row" data-compare-id="gigabyte-rtx-5070">
-                                    <th scope="row" role="rowheader"><a href="product.html?id=gigabyte-rtx-5070">GIGABYTE RTX 5070 WINDFORCE</a></th>
+                                <tr class="product-table__row" role="row" data-compare-id="2">
+                                    <th scope="row" role="rowheader"><a href="product.html?id=2">GIGABYTE RTX 5070 WINDFORCE</a></th>
                                     <td role="cell" data-label="Чип">GeForce RTX 5070</td>
                                     <td role="cell" data-label="Память">12 ГБ GDDR7</td>
                                     <td role="cell" data-label="Интерфейс">PCIe 5.0</td>
                                     <td role="cell" data-label="Цена">68 990 руб.</td>
                                 </tr>
-                                <tr class="product-table__row" role="row" data-compare-id="powercolor-rx-9060-xt">
-                                    <th scope="row" role="rowheader"><a href="product.html?id=powercolor-rx-9060-xt">PowerColor RX 9060 XT Reaper</a></th>
+                                <tr class="product-table__row" role="row" data-compare-id="3">
+                                    <th scope="row" role="rowheader"><a href="product.html?id=3">PowerColor RX 9060 XT Reaper</a></th>
                                     <td role="cell" data-label="Чип">Radeon RX 9060 XT</td>
                                     <td role="cell" data-label="Память">16 ГБ GDDR6</td>
                                     <td role="cell" data-label="Интерфейс">PCIe 5.0</td>
                                     <td role="cell" data-label="Цена">44 990 руб.</td>
                                 </tr>
-                                <tr class="product-table__row" role="row" data-compare-id="palit-rtx-5060">
-                                    <th scope="row" role="rowheader"><a href="product.html?id=palit-rtx-5060">Palit RTX 5060 Dual</a></th>
+                                <tr class="product-table__row" role="row" data-compare-id="5">
+                                    <th scope="row" role="rowheader"><a href="product.html?id=5">Palit RTX 5060 Dual</a></th>
                                     <td role="cell" data-label="Чип">GeForce RTX 5060</td>
                                     <td role="cell" data-label="Память">8 ГБ GDDR7</td>
                                     <td role="cell" data-label="Интерфейс">PCIe 5.0</td>
                                     <td role="cell" data-label="Цена">35 990 руб.</td>
                                 </tr>
-                                <tr class="product-table__row" role="row" data-compare-id="kfa2-rtx-3050">
-                                    <th scope="row" role="rowheader"><a href="product.html?id=kfa2-rtx-3050">KFA2 RTX 3050 X Black</a></th>
+                                <tr class="product-table__row" role="row" data-compare-id="8">
+                                    <th scope="row" role="rowheader"><a href="product.html?id=8">KFA2 RTX 3050 X Black</a></th>
                                     <td role="cell" data-label="Чип">GeForce RTX 3050</td>
                                     <td role="cell" data-label="Память">8 ГБ GDDR6</td>
                                     <td role="cell" data-label="Интерфейс">PCIe 4.0</td>

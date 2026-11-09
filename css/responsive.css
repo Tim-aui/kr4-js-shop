@@ -189,9 +189,16 @@ body {
     align-items: start;
   }
 
-  .filters-form .button {
-    grid-column: 1 / -1;
-    justify-self: start;
+  .cart-item {
+    grid-template-columns: 120px 1fr auto auto;
+  }
+
+  .cart-item__image {
+    width: 120px;
+  }
+
+  .cart-item__remove {
+    grid-column: auto;
   }
 
   .product-table--compare {
@@ -331,6 +338,23 @@ body {
 
   .catalog-products .products-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cart-layout {
+    grid-template-columns: 1fr 320px;
+  }
+
+  .cart-item {
+    grid-template-columns: 96px 1fr auto;
+  }
+
+  .cart-item__image {
+    width: 96px;
+  }
+
+  .cart-item__sum {
+    grid-column: 2;
+    text-align: left;
   }
 }
 
